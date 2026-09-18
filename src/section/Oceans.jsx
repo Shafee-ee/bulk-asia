@@ -19,10 +19,12 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 function Oceans() {
   const routes = [
+    // Hazira → Europe
     {
       from: "Hazira",
       to: "Antwerp",
       cargo: "Steel",
+      color: "#244081",
       coordinates: [
         [72.67, 21.12],
         [4.4, 51.3],
@@ -32,6 +34,7 @@ function Oceans() {
       from: "Hazira",
       to: "Dunkirk",
       cargo: "Steel",
+      color: "#244081",
       coordinates: [
         [72.67, 21.12],
         [2.38, 51.03],
@@ -41,6 +44,7 @@ function Oceans() {
       from: "Hazira",
       to: "Sagunto",
       cargo: "Steel",
+      color: "#244081",
       coordinates: [
         [72.67, 21.12],
         [-0.27, 39.67],
@@ -50,15 +54,19 @@ function Oceans() {
       from: "Hazira",
       to: "Ravenna",
       cargo: "Steel",
+      color: "#244081",
       coordinates: [
         [72.67, 21.12],
         [12.2, 44.42],
       ],
     },
+
+    // Hazira → India
     {
       from: "Hazira",
       to: "Goa",
       cargo: "Steel",
+      color: "#e45b6b",
       coordinates: [
         [72.67, 21.12],
         [73.8, 15.4],
@@ -68,15 +76,99 @@ function Oceans() {
       from: "Hazira",
       to: "Vizag",
       cargo: "Steel",
+      color: "#53d6d2",
       coordinates: [
         [72.67, 21.12],
         [83.3, 17.7],
       ],
     },
+
+    // Kandla → West Coast
+    {
+      from: "Kandla",
+      to: "Okha",
+      cargo: "Steel",
+      color: "#91d34a",
+      coordinates: [
+        [70.22, 23.03],
+        [69.07, 22.47],
+      ],
+    },
+    {
+      from: "Kandla",
+      to: "Karwar",
+      cargo: "Steel",
+      color: "#b66cff",
+      coordinates: [
+        [70.22, 23.03],
+        [74.12, 14.8],
+      ],
+    },
+
+    // East Coast → West Coast
+    {
+      from: "Gangavaram",
+      to: "New Mangalore",
+      cargo: "Steel",
+      color: "#f5b83d",
+      coordinates: [
+        [83.45, 17.65],
+        [74.8, 12.91],
+      ],
+    },
   ];
 
-  const hazira = [72.67, 21.12];
+  const ports = {
+    Hazira: [72.67, 21.12],
+    Kandla: [70.22, 23.03],
+    Okha: [69.07, 22.47],
+    Karwar: [74.12, 14.8],
+    Goa: [73.8, 15.4],
+    Gangavaram: [83.45, 17.65],
+    "New Mangalore": [74.8, 12.91],
+    Vizag: [83.3, 17.7],
+    Antwerp: [4.4, 51.3],
+    Dunkirk: [2.38, 51.03],
+    Sagunto: [-0.27, 39.67],
+    Ravenna: [12.2, 44.42],
+  };
 
+  const importantPorts = [
+    "Hazira",
+    "Kandla",
+    "Okha",
+    "Karwar",
+    "Goa",
+    "Gangavaram",
+    "New Mangalore",
+    "Vizag",
+    "Antwerp",
+    "Dunkirk",
+    "Sagunto",
+    "Ravenna",
+  ];
+
+  const labelOffsets = {
+    // India
+    Hazira: [18, 5],
+
+    // Separate Kandla and Okha
+    Kandla: [5, -14],
+    Okha: [-52, -6],
+
+    Goa: [-42, 24],
+    Karwar: [6, -4],
+
+    Gangavaram: [12, -18],
+    Vizag: [12, 6],
+    "New Mangalore": [6, 16],
+
+    // Europe
+    Antwerp: [12, 10],
+    Dunkirk: [12, 20],
+    Sagunto: [-58, 8],
+    Ravenna: [12, 8],
+  };
   const capabilities = [
     {
       label: "Vessel & Chartering",
@@ -103,15 +195,6 @@ function Oceans() {
       icon: ShieldCheck,
     },
   ];
-
-  const labelOffsets = {
-    Antwerp: [12, -12],
-    Dunkirk: [12, 14],
-    Sagunto: [12, 5],
-    Ravenna: [12, 5],
-    Goa: [12, 8],
-    Vizag: [12, 8],
-  };
 
   return (
     <section id="network" className="overflow-hidden bg-bulk-blue text-white">
@@ -187,7 +270,7 @@ function Oceans() {
               }
             </Geographies>
 
-            {/* Route underlay */}
+            {/* Route underlays */}
             {routes.map((route) => (
               <Line
                 key={`underlay-${route.from}-${route.to}`}
@@ -195,7 +278,7 @@ function Oceans() {
                 to={route.coordinates[1]}
                 stroke="white"
                 strokeWidth={5}
-                strokeOpacity={0.75}
+                strokeOpacity={0.7}
                 strokeDasharray="3 6"
                 strokeLinecap="round"
               />
@@ -207,79 +290,63 @@ function Oceans() {
                 key={`${route.from}-${route.to}`}
                 from={route.coordinates[0]}
                 to={route.coordinates[1]}
-                stroke="#244081"
-                strokeWidth={index === 0 ? 3 : 2.5}
+                stroke={route.color}
+                strokeWidth={2.5}
                 strokeOpacity={1}
                 strokeDasharray="3 6"
                 strokeLinecap="round"
                 className="ocean-route"
                 style={{
-                  animationDelay: `${index * 0.35}s`,
+                  animationDelay: `${index * 0.25}s`,
                 }}
               />
             ))}
-
-            {/* Hazira */}
-            <Marker coordinates={hazira}>
-              <circle r={8} fill="#244081" stroke="white" strokeWidth={2} />
-
-              <circle
-                r={14}
-                fill="none"
-                stroke="#244081"
-                strokeWidth={1.5}
-                strokeOpacity={0.45}
-              />
-
-              <rect x="17" y="-8" width="65" height="18" rx="2" fill="white" />
-
-              <text
-                x="23"
-                y="4"
-                className="fill-bulk-blue text-[9px] font-bold uppercase tracking-[0.14em]"
-              >
-                Hazira
-              </text>
-            </Marker>
-
-            {/* Destination markers */}
-            {routes.map((route) => {
-              const [x, y] = labelOffsets[route.to];
+            {/* Port markers */}
+            {importantPorts.map((port) => {
+              const [x, y] = labelOffsets[port];
+              const isHazira = port === "Hazira";
 
               return (
-                <Marker
-                  key={`marker-${route.to}`}
-                  coordinates={route.coordinates[1]}
-                >
-                  <circle r={5} fill="#244081" stroke="white" strokeWidth={2} />
-
-                  <rect
-                    x={x - 3}
-                    y={y - 10}
-                    width={route.to.length * 6.2 + 18}
-                    height="19"
-                    rx="2"
-                    fill="white"
+                <Marker key={`marker-${port}`} coordinates={ports[port]}>
+                  {/* Port marker */}
+                  <circle
+                    r={isHazira ? 8 : 5}
+                    fill="#244081"
+                    stroke="white"
+                    strokeWidth={2}
                   />
 
+                  {/* Hazira outer ring */}
+                  {isHazira && (
+                    <circle
+                      r={14}
+                      fill="none"
+                      stroke="#244081"
+                      strokeWidth={1.5}
+                      strokeOpacity={0.45}
+                    />
+                  )}
+
+                  {/* Label background */}
+
+                  {/* Label */}
                   <text
-                    x={x + 4}
-                    y={y + 3}
-                    className="fill-bulk-blue text-[9px] font-bold uppercase tracking-[0.1em]"
+                    x={x}
+                    y={y}
+                    className="fill-bulk-blue text-[10px] font-bold uppercase tracking-[0.1em]"
+                    style={{
+                      paintOrder: "stroke",
+                      stroke: "white",
+                      strokeWidth: 3,
+                      strokeLinejoin: "round",
+                    }}
                   >
-                    {route.to}
+                    {port}
                   </text>
                 </Marker>
               );
             })}
           </ComposableMap>
-
-          {/* Map labels */}
-          <div className="pointer-events-none absolute bottom-5 left-7 hidden text-[9px] uppercase tracking-[0.3em] text-white/30 md:block">
-            Moving possibilities
-            <br />
-            worldwide
-          </div>
         </div>
       </div>
 
@@ -293,9 +360,16 @@ function Oceans() {
                 index % 2 !== 0 ? "border-l" : ""
               } border-white/20 lg:border-l`}
             >
-              <p className="text-[9px] uppercase tracking-[0.25em] text-white/45">
-                {route.cargo}
-              </p>
+              <div className="flex items-center gap-2">
+                <span
+                  className="h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: route.color }}
+                />
+
+                <p className="text-[9px] uppercase tracking-[0.25em] text-white/45">
+                  {route.cargo}
+                </p>
+              </div>
 
               <div className="mt-2 flex items-center gap-2 text-xs">
                 <span>{route.from}</span>
@@ -319,9 +393,8 @@ function Oceans() {
                 index % 2 !== 0 ? "border-l" : ""
               } lg:border-l`}
             >
-              <Icon size={23} strokeWidth={1.3} className="text-white/85" />
-
-              <span className="max-w-[150px] text-[9px] font-medium uppercase leading-4 tracking-[0.12em] text-white/65">
+              <Icon size={25} strokeWidth={1.5} className="text-white" />
+              <span className="max-w-[150px] text-[10px] font-medium uppercase leading-4 tracking-[0.12em] text-white/80">
                 {label}
               </span>
             </div>
