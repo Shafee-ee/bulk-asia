@@ -7,7 +7,7 @@ function Footer() {
             <img
               src="/images/bulk-asia-logo.svg"
               alt="Bulk Asia"
-              className="h-12 w-auto brightness-0 invert"
+              className="h-16 w-auto brightness-0 invert"
             />
 
             <p className="mt-6 max-w-xs text-xs leading-6 text-white/50">

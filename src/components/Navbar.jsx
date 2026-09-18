@@ -21,7 +21,7 @@ function Navbar() {
             <img
               src="/images/bulk-asia-logo.svg"
               alt="Bulk Asia"
-              className="h-12 w-auto md:h-14"
+              className="h-16 w-auto md:h-14"
             />
           </a>
 

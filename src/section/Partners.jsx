@@ -4,7 +4,7 @@ function Partners() {
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-8 md:py-32">
         <div className="grid gap-12 md:grid-cols-2 md:items-end">
           <div>
-            <p className="mb-6 text-xs font-medium uppercase tracking-[0.35em] text-white/50">
+            <p className="mb-6 text-xl font-semibold uppercase tracking-[0.35em] text-white/50">
               Partners
             </p>
 
