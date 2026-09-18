@@ -7,6 +7,7 @@ import OurImpact from "./section/OurImpact";
 import Partners from "./section/Partners";
 import Contact from "./section/Contact";
 import Footer from "./section/Footer";
+import Cargoes from "./section/Cargoes";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Oceans />
       <OurImpact />
       <Partners />
+      <Cargoes />
       <Contact />
       <Footer />
     </main>

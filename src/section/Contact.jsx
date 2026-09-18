@@ -1,10 +1,10 @@
 function Contact() {
   return (
-    <section id="contact" className="bg-white text-bulk-blue">
+    <section id="contact" className="bg-bulk-blue text-white">
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-8 md:py-32">
         <div className="grid gap-16 md:grid-cols-2 md:gap-20">
           <div>
-            <p className="mb-6 text-xl font-semibold uppercase tracking-[0.35em] text-bulk-blue/50">
+            <p className="mb-6 text-xl font-semibold uppercase tracking-[0.35em] text-white/50">
               Get in Touch
             </p>
 
@@ -14,18 +14,18 @@ function Contact() {
               forward.
             </h2>
 
-            <p className="mt-8 max-w-md text-sm leading-7 text-bulk-blue/65">
+            <p className="mt-8 max-w-md text-sm leading-7 text-white/65">
               Whether you are looking to move cargo, explore a partnership or
               learn more about our capabilities, we would like to hear from you.
             </p>
           </div>
 
-          <form className="border-t border-bulk-blue/15 pt-8 md:border-t-0 md:pt-0">
+          <form className="border-t border-white/15 pt-8 md:border-t-0 md:pt-0">
             <div className="grid gap-8">
               <div>
                 <label
                   htmlFor="name"
-                  className="text-[10px] uppercase tracking-[0.25em] text-bulk-blue/50"
+                  className="text-[10px] uppercase tracking-[0.25em] text-white/50"
                 >
                   Name
                 </label>
@@ -34,7 +34,7 @@ function Contact() {
                   id="name"
                   name="name"
                   type="text"
-                  className="mt-3 w-full border-b border-bulk-blue/25 bg-transparent px-0 py-3 text-sm text-bulk-blue outline-none transition-colors placeholder:text-bulk-blue/30 focus:border-bulk-blue"
+                  className="mt-3 w-full border-b border-white/25 bg-transparent px-0 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-white"
                   placeholder="Your name"
                 />
               </div>
@@ -42,7 +42,7 @@ function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="text-[10px] uppercase tracking-[0.25em] text-bulk-blue/50"
+                  className="text-[10px] uppercase tracking-[0.25em] text-white/50"
                 >
                   Email
                 </label>
@@ -51,7 +51,7 @@ function Contact() {
                   id="email"
                   name="email"
                   type="email"
-                  className="mt-3 w-full border-b border-bulk-blue/25 bg-transparent px-0 py-3 text-sm text-bulk-blue outline-none transition-colors placeholder:text-bulk-blue/30 focus:border-bulk-blue"
+                  className="mt-3 w-full border-b border-white/25 bg-transparent px-0 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-white"
                   placeholder="Your email"
                 />
               </div>
@@ -59,7 +59,7 @@ function Contact() {
               <div>
                 <label
                   htmlFor="company"
-                  className="text-[10px] uppercase tracking-[0.25em] text-bulk-blue/50"
+                  className="text-[10px] uppercase tracking-[0.25em] text-white/50"
                 >
                   Company
                 </label>
@@ -68,7 +68,7 @@ function Contact() {
                   id="company"
                   name="company"
                   type="text"
-                  className="mt-3 w-full border-b border-bulk-blue/25 bg-transparent px-0 py-3 text-sm text-bulk-blue outline-none transition-colors placeholder:text-bulk-blue/30 focus:border-bulk-blue"
+                  className="mt-3 w-full border-b border-white/25 bg-transparent px-0 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-white"
                   placeholder="Company name"
                 />
               </div>
@@ -76,7 +76,7 @@ function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="text-[10px] uppercase tracking-[0.25em] text-bulk-blue/50"
+                  className="text-[10px] uppercase tracking-[0.25em] text-white/50"
                 >
                   Message
                 </label>
@@ -85,14 +85,14 @@ function Contact() {
                   id="message"
                   name="message"
                   rows="4"
-                  className="mt-3 w-full resize-none border-b border-bulk-blue/25 bg-transparent px-0 py-3 text-sm text-bulk-blue outline-none transition-colors placeholder:text-bulk-blue/30 focus:border-bulk-blue"
+                  className="mt-3 w-full resize-none border-b border-white/25 bg-transparent px-0 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-white"
                   placeholder="How can we help?"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full border border-bulk-blue bg-bulk-blue px-6 py-4 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors hover:bg-transparent hover:text-bulk-blue md:w-fit"
+                className="w-full border border-white bg-white px-6 py-4 text-xs font-medium uppercase tracking-[0.2em] text-bulk-blue transition-colors hover:bg-transparent hover:text-white md:w-fit"
               >
                 Send Enquiry →
               </button>

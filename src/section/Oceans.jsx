@@ -407,7 +407,7 @@ function Oceans() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/oceans-closing.jpg')",
+            backgroundImage: "url('/images/oceans-closing.png')",
           }}
         />
 
