@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme{
+  --color-bulk-blue:#244081;
+}
+
+.ocean-route {
+  animation: oceanRoute 3s linear infinite;
+}
+
+@keyframes oceanRoute {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
