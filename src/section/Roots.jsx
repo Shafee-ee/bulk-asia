@@ -25,14 +25,14 @@ function Roots() {
   return (
     <section id="story" className="bg-white text-bulk-blue">
       {/* Intro */}
-      <div className="mx-auto max-w-7xl px-8 py-28 md:py-36">
-        <div className="grid gap-12 md:grid-cols-2 md:items-end">
+      <div className="mx-auto max-w-7xl px-7 py-14 md:px-8 md:py-36">
+        <div className="grid gap-8 md:grid-cols-2 md:items-end">
           <div>
             <p className="mb-6 text-xs font-medium uppercase tracking-[0.35em]">
               Roots
             </p>
 
-            <h2 className="font-serif text-5xl leading-[0.95] tracking-tight md:text-7xl">
+            <h2 className="font-serif text-4xl leading-[0.95] tracking-tight md:text-7xl">
               Eight decades.
               <br />
               One enduring
@@ -40,9 +40,8 @@ function Roots() {
               connection.
             </h2>
           </div>
-
           <div className="max-w-lg md:justify-self-end">
-            <p className="text-xl leading-relaxed text-bulk-blue/80">
+            <p className="text-base leading-6 text-bulk-blue/80 md:text-xl md:leading-relaxed">
               Generations of experience. One enduring connection to the sea.
             </p>
 
@@ -57,34 +56,34 @@ function Roots() {
       </div>
 
       {/* Timeline */}
-      {/* Timeline */}
       <div className="border-y border-bulk-blue/15">
-        <div className="mx-auto max-w-7xl px-8">
+        <div className="mx-auto max-w-7xl px-7 md:px-8">
           <div className="relative grid md:grid-cols-4">
-            {/* Timeline line */}
+            {/* Desktop timeline line */}
             <div className="absolute left-0 right-0 top-[58px] hidden h-px bg-bulk-blue/20 md:block" />
 
             {milestones.map((milestone, index) => (
               <article
                 key={milestone.year}
-                className={`relative py-12 md:px-8 md:py-16 ${
+                className={`relative py-8 md:px-8 md:py-16 ${
                   index !== 0 ? "border-t md:border-t-0 md:border-l" : ""
                 } border-bulk-blue/15`}
               >
                 {/* Year */}
-                <div className="relative flex items-center gap-4">
-                  <div className="relative z-10 flex h-4 w-4 items-center justify-center rounded-full border border-bulk-blue bg-white">
-                    <div className="h-1.5 w-1.5 rounded-full bg-bulk-blue" />
+                <div className="relative flex items-center gap-3">
+                  <div className="relative z-10 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border border-bulk-blue bg-white md:h-4 md:w-4">
+                    <div className="h-1 w-1 rounded-full bg-bulk-blue md:h-1.5 md:w-1.5" />
                   </div>
 
-                  <p className="text-xs font-medium uppercase tracking-[0.25em] text-bulk-blue/60">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-bulk-blue/60 md:text-xs">
                     {milestone.year}
                   </p>
                 </div>
 
                 {/* Content */}
-                <div className="mt-14">
-                  <div className="flex items-center gap-3">
+                <div className="mt-6 md:mt-14">
+                  {/* Desktop chapter label */}
+                  <div className="hidden items-center gap-3 md:flex">
                     <span className="text-[10px] font-medium tracking-[0.2em] text-bulk-blue/40">
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -96,11 +95,11 @@ function Roots() {
                     </span>
                   </div>
 
-                  <h3 className="mt-5 max-w-[12rem] font-serif text-3xl leading-[1.05] md:text-4xl">
+                  <h3 className="mt-0 max-w-[15rem] font-serif text-2xl leading-[1.05] md:mt-5 md:text-4xl">
                     {milestone.title}
                   </h3>
 
-                  <p className="mt-6 max-w-xs text-sm leading-6 text-bulk-blue/65">
+                  <p className="mt-3 max-w-xs text-sm leading-5 text-bulk-blue/65 md:mt-6 md:text-sm md:leading-6">
                     {milestone.text}
                   </p>
                 </div>
@@ -109,16 +108,36 @@ function Roots() {
           </div>
         </div>
       </div>
-
       {/* Closing statement */}
-      <div className="mx-auto max-w-7xl px-8 py-24 md:py-32">
-        <p className="max-w-5xl font-serif text-3xl leading-tight md:text-5xl">
-          Shipping is in our DNA.
-          <br />
-          Logistics is our evolution.
-          <br />
-          Our legacy we carry forward.
-        </p>
+      {/* Closing statement */}
+      <div className="relative overflow-hidden bg-bulk-blue">
+        {/* Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-75"
+          style={{
+            backgroundImage: "url('/images/end-image.png')",
+          }}
+        />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-bulk-blue/15" />
+
+        {/* Content */}
+        <div className="relative z-10 mx-auto flex min-h-[420px] max-w-7xl items-end px-7 py-14 md:min-h-[520px] md:px-8 md:py-20">
+          <div>
+            <p className="mb-6 text-[18px] uppercase tracking-[0.3em] text-semibold text-white/50">
+              Our legacy
+            </p>
+
+            <p className="max-w-5xl font-serif text-3xl leading-[1.05] text-white md:text-5xl lg:text-6xl">
+              Shipping is in our DNA.
+              <br />
+              Logistics is our evolution.
+              <br />
+              Our legacy we carry forward.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

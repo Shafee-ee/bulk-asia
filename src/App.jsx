@@ -3,6 +3,10 @@ import Hero from "./section/Hero";
 import Roots from "./section/Roots";
 import WhatSetsUsApart from "./section/WhatSetsUsApart";
 import Oceans from "./section/Oceans";
+import OurImpact from "./section/OurImpact";
+import Partners from "./section/Partners";
+import Contact from "./section/Contact";
+import Footer from "./section/Footer";
 
 function App() {
   return (
@@ -12,6 +16,10 @@ function App() {
       <Roots />
       <WhatSetsUsApart />
       <Oceans />
+      <OurImpact />
+      <Partners />
+      <Contact />
+      <Footer />
     </main>
   );
 }

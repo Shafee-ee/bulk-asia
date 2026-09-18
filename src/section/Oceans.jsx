@@ -77,34 +77,82 @@ function Oceans() {
 
   const hazira = [72.67, 21.12];
 
+  const capabilities = [
+    {
+      label: "Vessel & Chartering",
+      icon: Anchor,
+    },
+    {
+      label: "Port Operations & Stevedores",
+      icon: Container,
+    },
+    {
+      label: "Warehousing & Cargo Handling",
+      icon: Boxes,
+    },
+    {
+      label: "Transporters & Last Mile Truckers",
+      icon: Truck,
+    },
+    {
+      label: "International Freight Movements",
+      icon: Globe2,
+    },
+    {
+      label: "End-to-End Solutions",
+      icon: ShieldCheck,
+    },
+  ];
+
+  const labelOffsets = {
+    Antwerp: [12, -12],
+    Dunkirk: [12, 14],
+    Sagunto: [12, 5],
+    Ravenna: [12, 5],
+    Goa: [12, 8],
+    Vizag: [12, 8],
+  };
+
   return (
     <section id="network" className="overflow-hidden bg-bulk-blue text-white">
       {/* Header */}
-      <div className="mx-auto max-w-7xl px-8 py-28 md:py-36">
-        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
+      <div className="mx-auto max-w-7xl px-7 py-14 md:px-8 md:py-24">
+        <div className="grid gap-10 md:grid-cols-2 md:items-end">
           <div>
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/60">
-              Oceans
-            </p>
+            <div className="mb-5 flex items-center gap-4">
+              <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-white/60 md:text-xs md:tracking-[0.35em]">
+                Oceans
+              </p>
 
-            <h2 className="font-serif text-5xl leading-[0.95] md:text-7xl">
+              <span className="h-px w-12 bg-white/35" />
+            </div>
+
+            <h2 className="font-serif text-4xl leading-[0.92] tracking-tight md:text-7xl">
               Connected
               <br />
               by the sea.
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-6 text-white/65">
-            From Indian ports to destinations across the world, our network
-            connects cargo, vessels, ports and people through every stage of the
-            journey.
-          </p>
+          <div className="md:justify-self-end">
+            <p className="mb-3 hidden text-right text-[9px] uppercase tracking-[0.35em] text-white/35 md:block">
+              Global routes
+              <br />
+              Stronger together
+            </p>
+
+            <p className="max-w-md text-sm leading-6 text-white/65">
+              From Indian ports to destinations across the world, our network
+              connects cargo, vessels, ports and people through every stage of
+              the journey.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Map */}
-      <div className="mx-auto max-w-7xl px-8 pb-24">
-        <div className="relative aspect-[2/1]">
+      {/* World Map */}
+      <div className="w-full border-y border-white/15">
+        <div className="relative aspect-[1.08/1] w-full md:aspect-[2/1]">
           <ComposableMap
             projection="geoMercator"
             projectionConfig={{
@@ -112,6 +160,9 @@ function Oceans() {
               scale: 260,
             }}
             className="h-full w-full"
+            style={{
+              background: "#294884",
+            }}
           >
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
@@ -119,9 +170,10 @@ function Oceans() {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill="rgba(255,255,255,0.10)"
-                    stroke="rgba(255,255,255,0.25)"
+                    fill="rgba(255,255,255,0.82)"
+                    stroke="rgba(255,255,255,0.35)"
                     strokeWidth={0.5}
+                    strokeOpacity={0.55}
                     style={{
                       default: {
                         outline: "none",
@@ -138,16 +190,34 @@ function Oceans() {
               }
             </Geographies>
 
-            {/* Shipping routes */}
+            {/* Route underlay */}
             {routes.map((route, index) => (
               <Line
                 key={`${route.from}-${route.to}`}
                 from={route.coordinates[0]}
                 to={route.coordinates[1]}
-                stroke="white"
-                strokeWidth={index === 0 ? 1.8 : 1.4}
-                strokeOpacity={index === 0 ? 0.8 : 0.45}
-                strokeDasharray="1 7"
+                stroke="#8ee8ff"
+                strokeWidth={index === 0 ? 3 : 2.5}
+                strokeOpacity={index === 0 ? 0.95 : 0.8}
+                strokeDasharray="8 8"
+                strokeLinecap="round"
+                className="ocean-route"
+                style={{
+                  animationDelay: `${index * 0.35}s`,
+                }}
+              />
+            ))}
+
+            {/* Main routes */}
+            {routes.map((route, index) => (
+              <Line
+                key={`${route.from}-${route.to}`}
+                from={route.coordinates[0]}
+                to={route.coordinates[1]}
+                stroke="#244081"
+                strokeWidth={index === 0 ? 3 : 2.5}
+                strokeOpacity={1}
+                strokeDasharray="3 6"
                 strokeLinecap="round"
                 className="ocean-route"
                 style={{
@@ -158,13 +228,22 @@ function Oceans() {
 
             {/* Hazira */}
             <Marker coordinates={hazira}>
-              <circle r={5} fill="white" />
-              <circle r={10} fill="none" stroke="white" strokeOpacity={0.35} />
+              <circle r={8} fill="#244081" stroke="white" strokeWidth={2} />
+
+              <circle
+                r={14}
+                fill="none"
+                stroke="#244081"
+                strokeWidth={1.5}
+                strokeOpacity={0.45}
+              />
+
+              <rect x="17" y="-8" width="65" height="18" rx="2" fill="white" />
+
               <text
-                textAnchor="start"
-                x="14"
+                x="23"
                 y="4"
-                className="fill-white text-[9px] uppercase tracking-[0.2em]"
+                className="fill-bulk-blue text-[9px] font-bold uppercase tracking-[0.14em]"
               >
                 Hazira
               </text>
@@ -172,15 +251,6 @@ function Oceans() {
 
             {/* Destination markers */}
             {routes.map((route) => {
-              const labelOffsets = {
-                Antwerp: [8, -8],
-                Dunkirk: [8, 12],
-                Sagunto: [8, 4],
-                Ravenna: [8, 4],
-                Goa: [8, 4],
-                Vizag: [8, 4],
-              };
-
               const [x, y] = labelOffsets[route.to];
 
               return (
@@ -188,13 +258,21 @@ function Oceans() {
                   key={`marker-${route.to}`}
                   coordinates={route.coordinates[1]}
                 >
-                  <circle r={3} fill="white" fillOpacity={0.9} />
+                  <circle r={5} fill="#244081" stroke="white" strokeWidth={2} />
+
+                  <rect
+                    x={x - 3}
+                    y={y - 10}
+                    width={route.to.length * 6.2 + 18}
+                    height="19"
+                    rx="2"
+                    fill="white"
+                  />
 
                   <text
-                    textAnchor="start"
-                    x={x}
-                    y={y}
-                    className="fill-white text-[8px] uppercase tracking-[0.15em]"
+                    x={x + 4}
+                    y={y + 3}
+                    className="fill-bulk-blue text-[9px] font-bold uppercase tracking-[0.1em]"
                   >
                     {route.to}
                   </text>
@@ -202,17 +280,25 @@ function Oceans() {
               );
             })}
           </ComposableMap>
+
+          {/* Map labels */}
+          <div className="pointer-events-none absolute bottom-5 left-7 hidden text-[9px] uppercase tracking-[0.3em] text-white/30 md:block">
+            Moving possibilities
+            <br />
+            worldwide
+          </div>
         </div>
       </div>
 
       {/* Route cards */}
-      {/* Route cards */}
-      <div className="border-t border-white/20">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-          {routes.map((route) => (
+      <div className="border-b border-white/20">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+          {routes.map((route, index) => (
             <article
               key={`${route.from}-${route.to}`}
-              className="border-b border-white/20 px-5 py-4 md:border-r"
+              className={`px-5 py-4 md:px-4 md:py-5 ${
+                index % 2 !== 0 ? "border-l" : ""
+              } border-white/20 lg:border-l`}
             >
               <p className="text-[9px] uppercase tracking-[0.25em] text-white/45">
                 {route.cargo}
@@ -220,7 +306,9 @@ function Oceans() {
 
               <div className="mt-2 flex items-center gap-2 text-xs">
                 <span>{route.from}</span>
-                <span className="text-white/30">→</span>
+
+                <span className="text-white/35">→</span>
+
                 <span>{route.to}</span>
               </div>
             </article>
@@ -229,29 +317,18 @@ function Oceans() {
       </div>
 
       {/* Capabilities */}
-      <div className="border-t border-white/20">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-          {[
-            { label: "Vessel & Chartering", icon: Anchor },
-            { label: "Port Operations & Stevedores", icon: Container },
-            { label: "Warehousing & Cargo Handling", icon: Boxes },
-            { label: "Transporters & Last Mile Truckers", icon: Truck },
-            { label: "International Freight Movements", icon: Globe2 },
-            { label: "End-to-End Solutions", icon: ShieldCheck },
-          ].map(({ label, icon: Icon }, index) => (
+      <div className="border-b border-white/20">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+          {capabilities.map(({ label, icon: Icon }, index) => (
             <div
               key={label}
-              className={`flex items-center gap-3 border-b border-white/20 px-5 py-5 ${
-                index !== 0 ? "lg:border-l" : ""
-              }`}
+              className={`flex min-h-[100px] flex-col justify-between gap-5 border-white/20 px-5 py-6 ${
+                index % 2 !== 0 ? "border-l" : ""
+              } lg:border-l`}
             >
-              <Icon
-                size={19}
-                strokeWidth={1.4}
-                className="shrink-0 text-white/70"
-              />
+              <Icon size={23} strokeWidth={1.3} className="text-white/85" />
 
-              <span className="text-[9px] uppercase leading-4 tracking-[0.12em] text-white/65">
+              <span className="max-w-[150px] text-[9px] font-medium uppercase leading-4 tracking-[0.12em] text-white/65">
                 {label}
               </span>
             </div>
@@ -259,26 +336,34 @@ function Oceans() {
         </div>
       </div>
 
-      {/* Capabilities */}
-      <div className="border-t border-white/20">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-          {[
-            "Vessel & Chartering",
-            "Port Operations & Stevedores",
-            "Warehousing & Cargo Handling",
-            "Transporters & Last Mile Truckers",
-            "International Freight Movements",
-            "End-to-End Solutions",
-          ].map((item, index) => (
-            <div
-              key={item}
-              className={`p-6 text-xs uppercase tracking-[0.12em] text-white/65 ${
-                index !== 0 ? "border-l border-white/20" : ""
-              }`}
-            >
-              {item}
-            </div>
-          ))}
+      {/* Closing visual */}
+      <div className="relative min-h-[360px] overflow-hidden md:min-h-[520px]">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/images/oceans-closing.png')",
+          }}
+        />
+
+        <div className="absolute inset-0 bg-bulk-blue/45" />
+
+        <div className="relative z-10 flex min-h-[360px] items-end px-7 py-12 md:min-h-[520px] md:px-12 md:py-16">
+          <div className="flex w-full flex-col justify-between gap-10 md:flex-row md:items-end">
+            <p className="max-w-md font-serif text-3xl leading-tight text-white md:text-5xl">
+              More than ports.
+              <br />A wider horizon.
+            </p>
+
+            <p className="text-[16px] uppercase leading-6 tracking-[0.3em] text-bold text-white md:text-right">
+              People
+              <br />
+              Cargo
+              <br />
+              Partnerships
+              <br />
+              Progress
+            </p>
+          </div>
         </div>
       </div>
     </section>
