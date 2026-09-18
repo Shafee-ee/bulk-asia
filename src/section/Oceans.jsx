@@ -157,12 +157,9 @@ function Oceans() {
             projection="geoMercator"
             projectionConfig={{
               center: [35, 15],
-              scale: 260,
+              scale: 360,
             }}
             className="h-full w-full"
-            style={{
-              background: "#294884",
-            }}
           >
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
@@ -170,9 +167,9 @@ function Oceans() {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill="rgba(255,255,255,0.82)"
-                    stroke="rgba(255,255,255,0.35)"
-                    strokeWidth={0.5}
+                    fill="#ffffff"
+                    stroke="#244081"
+                    strokeWidth={0.45}
                     strokeOpacity={0.55}
                     style={{
                       default: {
@@ -191,20 +188,16 @@ function Oceans() {
             </Geographies>
 
             {/* Route underlay */}
-            {routes.map((route, index) => (
+            {routes.map((route) => (
               <Line
-                key={`${route.from}-${route.to}`}
+                key={`underlay-${route.from}-${route.to}`}
                 from={route.coordinates[0]}
                 to={route.coordinates[1]}
-                stroke="#8ee8ff"
-                strokeWidth={index === 0 ? 3 : 2.5}
-                strokeOpacity={index === 0 ? 0.95 : 0.8}
-                strokeDasharray="8 8"
+                stroke="white"
+                strokeWidth={5}
+                strokeOpacity={0.75}
+                strokeDasharray="3 6"
                 strokeLinecap="round"
-                className="ocean-route"
-                style={{
-                  animationDelay: `${index * 0.35}s`,
-                }}
               />
             ))}
 
@@ -341,7 +334,7 @@ function Oceans() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/oceans-closing.png')",
+            backgroundImage: "url('/images/oceans-closing.jpg')",
           }}
         />
 
@@ -354,7 +347,7 @@ function Oceans() {
               <br />A wider horizon.
             </p>
 
-            <p className="text-[16px] uppercase leading-6 tracking-[0.3em] text-bold text-white md:text-right">
+            <p className="text-[10px] uppercase leading-6 tracking-[0.3em] text-white/60 md:text-right">
               People
               <br />
               Cargo
