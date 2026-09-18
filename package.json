@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "lucide-react": "^1.47.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-simple-maps": "^5.0.5",
+    "tailwindcss": "^4.3.3",
     "world-atlas": "^2.0.2"
   },
   "devDependencies": {
