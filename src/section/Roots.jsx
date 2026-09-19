@@ -1,7 +1,7 @@
 function Roots() {
   const milestones = [
     {
-      year: "1940s",
+      year: "mid-nineteenth century",
       title: "SHIPPING",
       text: "Our journey began with our forefathers, who were shipowners carrying cargo between the Persian Gulf and the Indian subcontinent.",
     },
@@ -33,11 +33,9 @@ function Roots() {
             </p>
 
             <h2 className="font-serif text-4xl leading-[0.95] tracking-tight md:text-7xl">
-              Eight decades.
-              <br />
-              One enduring
-              <br />
-              connection.
+              Generations of experience. <br />
+              One enduring <br />
+              connection.{" "}
             </h2>
           </div>
           <div className="max-w-lg md:justify-self-end">
@@ -46,10 +44,10 @@ function Roots() {
             </p>
 
             <p className="mt-6 leading-7 text-bulk-blue/70">
-              From our first vessels in the 1940s to the integrated logistics
-              capabilities of today, our journey has always been about moving
-              cargo, creating connections and building for the generations
-              ahead.
+              From our first vessels in the mid-nineteenth century to the
+              integrated logistics capabilities of today, our journey has always
+              been about moving cargo, creating connections and building for the
+              generations ahead.
             </p>
           </div>
         </div>
@@ -125,7 +123,7 @@ function Roots() {
         {/* Content */}
         <div className="relative z-10 mx-auto flex min-h-[420px] max-w-7xl items-end px-7 py-14 md:min-h-[520px] md:px-8 md:py-20">
           <div>
-            <p className="mb-6 text-[18px] uppercase tracking-[0.3em] text-semibold text-white/50">
+            <p className="mb-6 text-[18px] uppercase tracking-[0.3em] text-semiboldtext-white/50">
               Our legacy
             </p>
 
