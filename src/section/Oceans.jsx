@@ -1,3 +1,4 @@
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 function Oceans() {
   const photographs = [
     {
@@ -41,23 +42,42 @@ function Oceans() {
           </p>
         </div>
       </div>
-
       {/* Maritime Map */}
       {/* Maritime Map */}
-      <div className="border-y border-white/25 px-4 md:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="overflow-hidden">
+      <div className="border-y border-white/25">
+        <TransformWrapper
+          initialScale={1}
+          minScale={1}
+          maxScale={3}
+          centerOnInit
+          doubleClick={{
+            mode: "zoomIn",
+            step: 0.8,
+          }}
+          pinch={{
+            disabled: false,
+          }}
+          wheel={{
+            disabled: false,
+            step: 0.15,
+          }}
+          panning={{
+            disabled: false,
+          }}
+          limitToBounds={true}
+        >
+          <TransformComponent wrapperClass="!w-full" contentClass="!w-full">
             <img
               src="/images/world-image.png"
               alt="Bulk Asia maritime network and shipping routes"
-              className="block h-auto w-full"
+              className="block h-auto w-full select-none"
+              draggable="false"
             />
-          </div>
-        </div>
+          </TransformComponent>
+        </TransformWrapper>
       </div>
-
       {/* Steel / Port Photography */}
-      <div className="mx-auto max-w-7xl px-4 py-4 md:px-8 md:py-8">
+      {/* <div className="mx-auto max-w-7xl px-4 py-4 md:px-8 md:py-8">
         <div className="grid gap-3 md:grid-cols-3">
           {photographs.map((photo) => (
             <figure key={photo.label} className="group">
@@ -75,8 +95,7 @@ function Oceans() {
             </figure>
           ))}
         </div>
-      </div>
-
+      </div> */}
       {/* Closing */}
       <div className="relative min-h-[300px] overflow-hidden md:min-h-[420px]">
         <div
